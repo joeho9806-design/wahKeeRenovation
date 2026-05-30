@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>華記裝修公司 - 高質感室內設計與工程</title>
+    <style>
+        /* --- CSS 變數與基礎設定 --- */
+        :root {
+            --primary-color: #2c3e50; /* 深灰色 */
+            --secondary-color: #b39274; /* 質感木質/米色調 */
+            --text-color: #333333;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, "Microsoft JhengHei";
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header 導航欄 --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section 橫幅 --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+                        url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #a07f60;
+            transform: translateY(-2px);
+        }
+
+        /* --- Section 通用樣式 --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- Portfolio 作品展示區 (Grid) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-img-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #eaeaea;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .card-info p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer 頁尾 --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* --- RWD 響應式斷點 --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links li {
+                margin: 0 15px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">華記裝修公司</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">首頁</a></li>
+                    <li><a href="#">關於我們</a></li>
+                    <li><a href="#portfolio">裝修案例</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>打造您夢想中的臻美家居</h1>
+            <p>三十年專注香港室內裝修與翻新工程，以匠心築家。</p>
+            <a href="#contact" class="btn">立即諮詢</a>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container">
+        <h2 class="section-title">裝修案例</h2>
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card">
+                <div class="card-img-container">
+                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/site1.jpg" alt="青衣青蘭樓" onerror="this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-info">
+                    <h3>青衣青蘭樓</h3>
+                    <p>全屋空間重新規劃，善用每寸空間，配合精心挑選的物料與燈光設計，為您打造兼具美觀與功能的居住環境。</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-img-container">
+                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/site2.jpg" alt="安楹苑" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-info">
+                    <h3>安楹苑</h3>
+                    <p>注重細節與工藝流程，從泥水、水電到木工油漆，專業團隊嚴格把關，確保交出最完美的裝修成品。</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-img-container">
+                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/site3.jpg" alt="泰峰" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-info">
+                    <h3>泰峰</h3>
+                    <p>現代與實用的完美結合。配合戶主生活習慣進行訂製傢俬設計，營造極具個人品味與歸屬感的家。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: #f0f2f5; text-align: center;">
+        <div class="container">
+            <h2 class="section-title">聯絡我們</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1rem;">歡迎隨時預約師傅上門度尺及報價</p>
+            <p>📞 電話 / WhatsApp: <strong>+852 9000 XXXX</strong></p>
+            <p>📧 電郵: <strong>info@wahkeerenovation.com</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 華記裝修公司 版權所有。專業室內設計與裝修工程。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 頁面預留的 JS 互動邏輯（例如未來擴充動態效果）
+        console.log("華記裝修公司網頁已成功載入。");
+    </script>
+</body>
+</html>
