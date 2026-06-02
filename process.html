@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>華記裝修公司 - 案例相簿詳情</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #b39274;
+            --text-color: #333333;
+            --bg-light: #f4f6f9;
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft JhengHei", sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-color); padding: 40px 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        .header-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 { color: var(--primary-color); margin-bottom: 10px; font-size: 2rem; }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        /* 圖片網格排版 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            background-color: #eaeaea;
+        }
+        .gallery-card .filename {
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #777;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="javascript:window.close();" class="back-btn">← 關閉此頁</a>
+        
+        <div class="header-area">
+            <span class="badge" id="album-type">裝修記錄</span>
+            <h1 id="album-title">相簿載入中...</h1>
+        </div>
+
+        <!-- 動態相片牆 -->
+        <div class="gallery-grid" id="gallery-container"></div>
+    </div>
+
+    <script>
+        // GitHub 圖片基礎路徑
+        const baseUri = "https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/";
+        
+        // 封裝生成連貫數字檔名清單的輔助函式
+        function generateRange(prefix, start, end) {
+            let list = [];
+            for(let i = start; i <= end; i++) {
+                list.push(`${prefix} (${i}).png`);
+            }
+            return list;
+        }
+
+        // 完美對接你提供的 GitHub 檔名規則數據庫
+        const albumRoutes = {
+            // --- 裝修過程相簿 ---
+            qingyi: {
+                title: "青衣青蘭樓 — 施工及裝修過程",
+                type: "施工過程",
+                images: generateRange("ChingLanHouse", 1, 36)
+            },
+            anying: {
+                title: "安楹苑 — 施工及裝修過程",
+                type: "施工過程",
+                images: [
+                    ...generateRange("OnYingCourt", 3, 11),
+                    ...generateRange("OnYingCourt", 14, 76)
+                ]
+            },
+            // --- 完工結果相簿 ---
+            qingyi_result: {
+                title: "青衣青蘭樓 — 完美完工實景",
+                type: "完工成果",
+                images: generateRange("ChingLanHouse", 37, 47)
+            },
+            anying_result: {
+                title: "安楹苑 — 完美完工實景",
+                type: "完工成果",
+                images: [
+                    "OnYingCourt (1).png",
+                    "OnYingCourt (2).png",
+                    "OnYingCourt (12).png",
+                    "OnYingCourt (13).png"
+                ]
+            },
+            taifeng_result: {
+                title: "泰峰 UptownEast — 完美完工實景",
+                type: "完工成果",
+                images: generateRange("UptownEast", 1, 29)
+            }
+        };
+
+        // 解析首頁傳過來的參數 (?site=xxxx)
+        const params = new URLSearchParams(window.location.search);
+        const currentRoute = params.get('site');
+
+        const album = albumRoutes[currentRoute];
+        const container = document.getElementById('gallery-container');
+
+        if (album) {
+            // 更新標題及標籤
+            document.getElementById('album-title').textContent = album.title;
+            document.getElementById('album-type').textContent = album.type;
+            
+            // 變更完工成果標籤顏色以作識別
+            if(album.type === "完工成果") {
+                document.getElementById('album-type').style.backgroundColor = "#2c3e50";
+            }
+
+            // 循環渲染出所有對應區間的相片
+            album.images.forEach(filename => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                
+                // 為了防止檔名有空格導致路徑失效，使用 encodeURIComponent 處理檔名
+                const encodedFilename = encodeURIComponent(filename);
+                
+                card.innerHTML = `
+                    <img src="${baseUri}${encodedFilename}" alt="${filename}" loading="lazy">
+                    <div class="filename">${filename}</div>
+                `;
+                container.appendChild(card);
+            });
+        } else {
+            document.getElementById('album-title').textContent = "未找到相關相簿項目";
+        }
+    </script>
+</body>
+</html>

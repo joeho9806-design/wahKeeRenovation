@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精選裝修工程成品 | 現代家居設計 Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header 頂部導航 -->
+    <header>
+        <div class="logo">Renovation Showcase</div>
+        <nav>
+            <a href="#chinglan">青蘭樓</a>
+            <a href="#onying">安楹苑</a>
+            <a href="#uptowneast">泰峰</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section 歡迎橫幅 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>打造專屬您的理想家居</h1>
+            <p>不只是裝修，更是對生活品味的追求。凝聚匠心工藝，完美呈現三個精選屋苑個案。</p>
+        </div>
+    </section>
+
+    <!-- 項目展示區 -->
+    <main class="portfolio-container">
+
+        <!-- 項目 1：青蘭樓 -->
+        <section id="chinglan" class="project-section">
+            <div class="project-info">
+                <h2>蝶翠苑 — 青蘭樓 (Ching Lan House)</h2>
+                <span class="tag">全屋翻新</span><span class="tag">空間優化</span>
+                <p class="description">
+                    本個案著重於有限空間內釋放最大居住潛能。全屋採用明亮柔和的色調搭配隱藏式收納設計，將光線引入屋內每個角落。精緻的木工與間隔改動，為戶主打造出兼具現代感與實用性的溫馨家居。
+                </p>
+            </div>
+            <!-- 相簿 Grid -->
+            <div class="image-grid" id="grid-chinglan"></div>
+        </section>
+
+        <!-- 項目 2：安楹苑 -->
+        <section id="onying" class="project-section">
+            <div class="project-info">
+                <h2>安楹苑 (On Ying Court)</h2>
+                <span class="tag">現代簡約風</span><span class="tag">訂造傢俬</span>
+                <p class="description">
+                    安楹苑個案以「現代簡約」為核心主題。客客廳選用大理石紋理與金屬線條點綴，營造出低調的奢華感。全屋訂造傢俬嚴絲合縫，由玄關鞋櫃到主人房地台床，完美貼合戶主的生活習慣，彰顯高標準工藝。
+                </p>
+            </div>
+            <!-- 相簿 Grid -->
+            <div class="image-grid" id="grid-onying"></div>
+        </section>
+
+        <!-- 項目 3：泰峰 -->
+        <section id="uptowneast" class="project-section">
+            <div class="project-info">
+                <h2>泰峰 (Uptown East)</h2>
+                <span class="tag">輕奢北歐風</span><span class="tag">智能家居</span>
+                <p class="description">
+                    泰峰作為全新落成屋苑，設計師巧妙運用北歐木質元素與當代線條交織。特別注重燈光美學設計，透過嵌入式燈帶與智能調光系統，讓日間的自然光與夜間的溫暖燈效無縫切換，完美襯托出新樓盤的尊貴與舒適。
+                </p>
+            </div>
+            <!-- 相簿 Grid -->
+            <div class="image-grid" id="grid-uptowneast"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer 頁腳 -->
+    <footer>
+        <p>&copy; 2026 裝修設計工程公司. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript：自動動態生成相片，並加入 Lazy Load 提升網頁 Traffic 順暢度 -->
+    <script>
+        // 設定三個項目的相片路徑、格式與數量
+        const projects = [
+            {
+                id: 'grid-chinglan',
+                path: 'images/ChingLanHouse/ChingLanHouse',
+                ext: 'png',
+                count: 47
+            },
+            {
+                id: 'grid-onying',
+                path: 'images/OnYingCourt/OnYingCourt',
+                ext: 'png',
+                count: 76
+            },
+            {
+                id: 'grid-uptowneast',
+                path: 'images/UptownEast/UptownEast',
+                ext: 'png',
+                count: 29
+            }
+        ];
+
+        // 自動生成圖片 HTML
+        projects.forEach(proj => {
+            const grid = document.getElementById(proj.id);
+            let htmlContent = '';
+            
+            for(let i = 1; i <= proj.count; i++) {
+                // loading="lazy" 是瀏覽器原生優化，相片滑動到該處才會載入，極大節省 Traffic
+                htmlContent += `
+                    <div class="card">
+                        <img src="${proj.path} (${i}).${proj.ext}" alt="裝修完成品" loading="lazy">
+                    </div>
+                `;
+            }
+            grid.innerHTML = htmlContent;
+        });
+    </script>
+</body>
+</html>
