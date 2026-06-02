@@ -8,7 +8,7 @@
         /* --- CSS 變數與基礎設定 --- */
         :root {
             --primary-color: #2c3e50; /* 高級深灰色 */
-            --secondary-color: #b39274; /* 質感木質色調 */
+            --secondary-color: #b39274; /* 質感木質/米色調 */
             --text-color: #333333;
             --bg-light: #f9f9f9;
             --white: #ffffff;
@@ -85,7 +85,7 @@
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
                         url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-            height: 55vh;
+            height: 50vh;
             display: flex;
             align-items: center;
             text-align: center;
@@ -115,10 +115,17 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--primary-color);
-            margin-bottom: 40px;
+            margin-bottom: 15px;
             position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
         }
 
         .section-title::after {
@@ -127,120 +134,135 @@
             width: 50px;
             height: 3px;
             background-color: var(--secondary-color);
-            margin: 10px auto 0;
+            margin: 15px auto 0;
         }
 
-        /* --- Portfolio Section (Grid) --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        /* --- Project Big Title (大項目分區) --- */
+        .project-block {
+            margin-bottom: 70px;
         }
 
-        .portfolio-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .card-img-container {
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-            background-color: #eaeaea;
-            position: relative;
-        }
-
-        .card-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        /* 相片數量提示標籤 */
-        .img-count-badge {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background-color: rgba(44, 62, 80, 0.85);
-            color: var(--white);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .card-info {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            font-size: 1.4rem;
-        }
-
-        .card-info p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            text-align: justify;
-        }
-
-        /* 裝修過程與完工照連結組合 */
-        .card-action-box {
+        .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            border-top: 1px solid #f0f0f0;
-            padding-top: 15px;
+            align-items: flex-end;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
-        .action-link {
+        .project-header h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+        }
+
+        .project-header .process-btn {
+            color: var(--secondary-color);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--secondary-color);
+            padding: 6px 14px;
+            border-radius: 4px;
             transition: var(--transition);
         }
 
-        .process-link {
-            color: var(--secondary-color);
-            border-bottom: 1px dashed var(--secondary-color);
-        }
-
-        .process-link:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-
-        .result-view-link {
-            color: var(--primary-color);
-            background-color: #f0f4f8;
-            padding: 6px 12px;
-            border-radius: 4px;
-        }
-
-        .result-view-link:hover {
+        .project-header .process-btn:hover {
             background-color: var(--secondary-color);
             color: var(--white);
         }
 
-        /* --- Footer --- */
+        /* ---瀑布流/網格相簿排版 --- */
+        .results-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background-color: var(--white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background-color: #eaeaea;
+        }
+
+        .gallery-item .img-label {
+            padding: 10px;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            border-top: 1px solid #f5f5f5;
+        }
+
+        /* --- Contact Section 聯絡我們 --- */
+        .contact-section {
+            background-color: #f0f2f5;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info-box h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .contact-details strong {
+            color: var(--primary-color);
+            display: inline-block;
+            width: 90px;
+        }
+
+        /* 聯絡表單預留 */
+        .contact-form {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer 頁尾 --- */
         footer {
             background-color: var(--primary-color);
             color: var(--white);
@@ -249,98 +271,143 @@
             font-size: 0.9rem;
         }
 
+        /* --- RWD 響應式斷點 --- */
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; gap: 15px; }
             .nav-links li { margin: 0 15px; }
             .hero-content h1 { font-size: 2rem; }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header 導航欄 -->
     <header>
         <div class="container nav-container">
             <div class="logo">華記裝修公司</div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#">首頁</a></li>
-                    <li><a href="#portfolio">精選案例</a></li>
+                    <li><a href="#portfolio">裝修成品</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Banner -->
     <section class="hero">
         <div class="container hero-content">
             <h1>打造您夢想中的臻美家居</h1>
-            <p>專注全港優質住宅裝修與翻新工程，以匠心築家。</p>
+            <p>專注全港優質住宅裝修與翻新工程，以優質工藝成就完美交付。</p>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
     <section id="portfolio" class="container">
-        <h2 class="section-title">精選完工案例展現</h2>
-        <div class="portfolio-grid">
+        <h2 class="section-title">精選完工案例實景</h2>
+        <p class="section-subtitle">以下為各項目完工交付時的真實全景拍照成果</p>
+
+        <div class="project-block">
+            <div class="project-header">
+                <h3>青衣青蘭樓 (完工成品照)</h3>
+                <a href="process.html?site=qingyi" target="_blank" class="process-btn">查看此項目施工過程 ↗</a>
+            </div>
+            <div class="results-gallery" id="gallery-qingyi">
+                </div>
+        </div>
+
+        <div class="project-block">
+            <div class="project-header">
+                <h3>安楹苑 (完工成品照)</h3>
+                <a href="process.html?site=anying" target="_blank" class="process-btn">查看此項目施工過程 ↗</a>
+            </div>
+            <div class="results-gallery">
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/OnYingCourt%20(1).png" alt="安楹苑"><div class="img-label">OnYingCourt (1)</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/OnYingCourt%20(2).png" alt="安楹苑"><div class="img-label">OnYingCourt (2)</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/OnYingCourt%20(12).png" alt="安楹苑"><div class="img-label">OnYingCourt (12)</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/OnYingCourt%20(13).png" alt="安楹苑"><div class="img-label">OnYingCourt (13)</div></div>
+            </div>
+        </div>
+
+        <div class="project-block">
+            <div class="project-header">
+                <h3>泰峰 UptownEast (完工成品照)</h3>
+                <span style="color: #888; font-size: 0.9rem;">全期完工交付</span>
+            </div>
+            <div class="results-gallery" id="gallery-taifeng">
+                </div>
+        </div>
+
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">聯絡我們</h2>
+            <p class="section-subtitle">不論是全屋翻新還是局部裝修，歡迎隨時聯絡華記洽談</p>
             
-            <!-- 項目 1：青衣青蘭樓 -->
-            <div class="portfolio-card">
-                <div class="card-img-container">
-                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/ChingLanHouse%20(37).png" alt="青衣青蘭樓完工照">
-                    <span class="img-count-badge">完工照 11 張</span>
+            <div class="contact-grid">
+                <div class="contact-info-box">
+                    <h4>華記裝修工程公司</h4>
+                    <p style="color: #666; margin-bottom: 25px;">擁有三十年豐富經驗，主力承接香港各屋苑、居屋及公屋的室內設計及裝修工程。師傅團隊手工細緻，價錢公道，免費上門度尺報價。</p>
+                    
+                    <ul class="contact-details">
+                        <li><strong>📞 電話：</strong>+852 2345 6789</li>
+                        <li><strong>💬 WhatsApp：</strong>+852 9806 XXXX (點擊即時對話)</li>
+                        <li><strong>📧 電郵：</strong>info@wahkeerenovation.com</li>
+                        <li><strong>📍 地址：</strong>九龍旺角彌敦道 XXX 號文華商業大廈 XX 樓 (歡迎預約洽談)</li>
+                        <li><strong>⏰ 營業時間：</strong>星期一至六 09:00 - 18:00 (星期日及公眾假期休息)</li>
+                    </ul>
                 </div>
-                <div class="card-info">
-                    <h3>青衣青蘭樓</h3>
-                    <p>全屋空間重新規劃，善用每寸空間，配合精心挑選的物料與燈光設計，為您打造兼具美觀與功能的居住環境。</p>
-                    <div class="card-action-box">
-                        <a href="process.html?site=qingyi" target="_blank" class="action-link process-link">查看施工過程 ↗</a>
-                        <a href="process.html?site=qingyi_result" target="_blank" class="action-link result-view-link">看全部完工照</a>
-                    </div>
+
+                <div class="contact-form">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">填寫度尺預約 / 諮詢</h4>
+                    <form onsubmit="alert('感謝您的查詢！華記會盡快聯絡您。'); return false;">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="聯絡電話 / WhatsApp" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="裝修屋苑 / 單位面積 (例如: 青蘭樓 400呎)" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="請簡述您的裝修需求 (例如: 全屋翻新、訂造傢俬...)" required></textarea>
+                        </div>
+                        <button type="submit" class="process-btn" style="width: 100%; background-color: var(--primary-color); color: var(--white); padding: 10px; cursor: pointer; font-weight: bold;">提交諮詢申請</button>
+                    </form>
                 </div>
             </div>
-
-            <!-- 項目 2：安楹苑 -->
-            <div class="portfolio-card">
-                <div class="card-img-container">
-                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/OnYingCourt%20(1).png" alt="安楹苑完工照">
-                    <span class="img-count-badge">完工照 4 張</span>
-                </div>
-                <div class="card-info">
-                    <h3>安楹苑</h3>
-                    <p>注重細節與工藝流程，從泥水、水電到木工油漆，專業團隊嚴格把關，確保交出最完美的裝修成品。</p>
-                    <div class="card-action-box">
-                        <a href="process.html?site=anying" target="_blank" class="action-link process-link">查看施工過程 ↗</a>
-                        <a href="process.html?site=anying_result" target="_blank" class="action-link result-view-link">看全部完工照</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 項目 3：泰峰 -->
-            <div class="portfolio-card">
-                <div class="card-img-container">
-                    <img src="https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/UptownEast%20(1).png" alt="泰峰完工照">
-                    <span class="img-count-badge">完工照 29 張</span>
-                </div>
-                <div class="card-info">
-                    <h3>泰峰</h3>
-                    <p>現代與實用的完美結合。配合戶主生活習慣進行訂製傢俬設計，營造極具個人品味與歸屬感的家。</p>
-                    <div class="card-action-box">
-                        <!-- 泰峰無過程相，故隱藏 process-link 保持美觀 -->
-                        <span style="color: #ccc; font-size: 0.85rem;">(全期完工交付)</span>
-                        <a href="process.html?site=taifeng_result" target="_blank" class="action-link result-view-link">看全部完工照</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 華記裝修公司 版權所有。專業住宅裝修工程。</p>
+            <p>&copy; 2026 華記裝修公司 版權所有。專業住宅室內裝修工程。</p>
         </div>
     </footer>
+
+    <script>
+        const baseUri = "https://raw.githubusercontent.com/joeho9806-design/wahKeeRenovation/main/images/";
+
+        // 1. 動態生成【青衣青蘭樓】完工照 (37 - 47)
+        const qingyiContainer = document.getElementById('gallery-qingyi');
+        for (let i = 37; i <= 47; i++) {
+            const filename = `ChingLanHouse (${i}).png`;
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `<img src="${baseUri}${encodeURIComponent(filename)}" alt="青蘭樓完工" loading="lazy"><div class="img-label">完工照 (${i})</div>`;
+            qingyiContainer.appendChild(div);
+        }
+
+        // 2. 動態生成【泰峰】完工照 (1 - 29)
+        const taifengContainer = document.getElementById('gallery-taifeng');
+        for (let i = 1; i <= 29; i++) {
+            const filename = `UptownEast (${i}).png`;
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `<img src="${baseUri}${encodeURIComponent(filename)}" alt="泰峰完工" loading="lazy"><div class="img-label">完工照 (${i})</div>`;
+            taifengContainer.appendChild(div);
+        }
+    </script>
 </body>
 </html>
